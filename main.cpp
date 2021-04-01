@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
   }
 
   theFile.seekg(0, ios_base::end);
-  size_t fileSize = (size_t)theFile.tellg();
+  auto fileSize = theFile.tellg();
   theFile.seekg(0, ios_base::beg);
   if (fileSize%2 != 0) {
     cout << "The size of file must be odd! Instead it was: " << fileSize << endl;
@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
   theFile.read(buffer, fileSize);
   theFile.close();
   
-  for (size_t i=0; i<fileSize; i+=2) {
+  for (streamoff i=0; i<fileSize; i+=2) {
     swap(buffer[i], buffer[i+1]);
   }
 
